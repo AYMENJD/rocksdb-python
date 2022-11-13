@@ -18,7 +18,7 @@ Build rocksdb
 From source:
 ***********
 ```bash
-apt-get install build-essential libgflags-dev libgflags-dev libgflags-dev libgflags-dev liblz4-dev libzstd-dev
+apt-get install build-essential libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev
 git clone https://github.com/facebook/rocksdb.git
 cd rocksdb
 mkdir build
