@@ -7,7 +7,10 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Clone rocksdb-python
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
 
       - name: Build rocksdb-python
         uses: actions/setup-python@v4
