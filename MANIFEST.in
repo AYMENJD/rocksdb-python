@@ -1,0 +1,5 @@
+include README.md LICENSE requirements.txt CMakeLists.txt
+recursive-include rocksdb/ *.py
+recursive-include rocksdb/ext/ *
+recursive-include CMake *.cmake
+exclude build/
