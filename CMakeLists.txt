@@ -6,7 +6,7 @@ if(POLICY CMP0065)
   cmake_policy(SET CMP0065 NEW)
 endif()
 
-project(rocksdb-python VERSION 0.1.0 LANGUAGES CXX C)
+project(rocksdb-python VERSION 0.1.1 LANGUAGES CXX C)
 
 if(NOT DEFINED CMAKE_MODULE_PATH)
   set(CMAKE_MODULE_PATH "")

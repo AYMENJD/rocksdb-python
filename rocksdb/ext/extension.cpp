@@ -5,26 +5,24 @@ PYBIND11_MODULE(rocksdb_ext, m) {
     py::class_<RocksDB>(m, "RocksDBext")
         .def(py::init<std::string, rocksdb::Options &, bool, std::string *>())
         .def_readonly("is_running", &RocksDB::is_running)
-        .def("Get", &RocksDB::Get, py::arg("readOptions"), py::arg("key"), py::return_value_policy::take_ownership)
+        .def("Get", &RocksDB::Get, py::arg("readOptions"), py::arg("key"), py::return_value_policy::move)
         .def("Put", &RocksDB::Put, py::arg("writeOptions"), py::arg("key"), py::arg("value"),
-             py::return_value_policy::take_ownership)
+             py::return_value_policy::move)
         .def("Merge", &RocksDB::Merge, py::arg("writeOptions"), py::arg("key"), py::arg("value"),
-             py::return_value_policy::take_ownership)
+             py::return_value_policy::move)
         .def("KeyMayExist", &RocksDB::KeyMayExist, py::arg("readOptions"), py::arg("key"),
-             py::return_value_policy::take_ownership)
-        .def("Del", &RocksDB::Del, py::arg("writeOptions"), py::arg("key"), py::return_value_policy::take_ownership)
-        .def("GetOptions", &RocksDB::GetOptions, py::return_value_policy::take_ownership)
-        .def("SetOptions", &RocksDB::SetOptions, py::arg("options"), py::return_value_policy::take_ownership)
-        .def("SetDBOptions", &RocksDB::SetDBOptions, py::arg("options"), py::return_value_policy::take_ownership)
-        .def("GetProperty", &RocksDB::GetProperty, py::arg("key"), py::return_value_policy::take_ownership)
-        .def("Flush", &RocksDB::Flush, py::arg("flushOptions"), py::return_value_policy::take_ownership)
-        .def("TryCatchUpWithPrimary", &RocksDB::TryCatchUpWithPrimary, py::return_value_policy::take_ownership)
+             py::return_value_policy::move)
+        .def("Del", &RocksDB::Del, py::arg("writeOptions"), py::arg("key"), py::return_value_policy::move)
+        .def("GetOptions", &RocksDB::GetOptions, py::return_value_policy::move)
+        .def("SetOptions", &RocksDB::SetOptions, py::arg("options"), py::return_value_policy::move)
+        .def("SetDBOptions", &RocksDB::SetDBOptions, py::arg("options"), py::return_value_policy::move)
+        .def("GetProperty", &RocksDB::GetProperty, py::arg("key"), py::return_value_policy::move)
+        .def("Flush", &RocksDB::Flush, py::arg("flushOptions"), py::return_value_policy::move)
+        .def("TryCatchUpWithPrimary", &RocksDB::TryCatchUpWithPrimary, py::return_value_policy::move)
         .def_static("GetRocksBuildProperties", &RocksDB::GetRocksBuildProperties)
-        .def_static("GetRocksVersionAsString", &RocksDB::GetRocksVersionAsString,
-                    py::return_value_policy::take_ownership)
-        .def_static("GetRocksBuildInfoAsString", &RocksDB::GetRocksBuildInfoAsString,
-                    py::return_value_policy::take_ownership)
-        .def("Close", &RocksDB::Close, py::return_value_policy::take_ownership);
+        .def_static("GetRocksVersionAsString", &RocksDB::GetRocksVersionAsString, py::return_value_policy::move)
+        .def_static("GetRocksBuildInfoAsString", &RocksDB::GetRocksBuildInfoAsString, py::return_value_policy::move)
+        .def("Close", &RocksDB::Close, py::return_value_policy::move);
 
     py::class_<Response>(m, "Response")
         .def(py::init<rocksdb::Status &, std::string *>())
