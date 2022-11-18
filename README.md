@@ -50,6 +50,11 @@ Using pip:
 pip install rocksdb-python
 ```
 
+From source (development version):
+```bash
+pip install git+https://github.com/AYMENJD/rocksdb-python
+```
+
 Usage
 -----
 ```python
