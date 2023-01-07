@@ -1,6 +1,7 @@
 # rocksdb-python [![version](https://img.shields.io/pypi/v/rocksdb-python?style=flat&logo=pypi)](https://pypi.org/project/rocksdb-python) [![downloads](https://img.shields.io/pypi/dm/rocksdb-python?style=flat)](https://pypistats.org/packages/rocksdb-python)
 
 Simple and easy rocksdb client for python.
+> NOTE: This client dosen't fully support rocksdb. Only the basic usage of rocksdb is supported.
 
 ### Requirements
 
