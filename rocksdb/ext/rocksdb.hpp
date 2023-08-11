@@ -1,6 +1,7 @@
 #pragma once
 
 #include <exception>
+#include <iostream>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <rocksdb/db.h>
@@ -24,6 +25,10 @@ class Response {
 
         this->status = s;
     }
+
+    const py::bytes value_bytes() {
+        return py::bytes(this->value);
+    };
 };
 
 class RocksDB {

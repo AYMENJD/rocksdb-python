@@ -5,7 +5,8 @@ from logging import getLogger
 from concurrent.futures import ThreadPoolExecutor
 from .rocksdb_ext import RocksDBext, Response
 
-import rocksdb, asyncio
+import rocksdb
+import asyncio
 
 logger = getLogger(__name__)
 
@@ -143,7 +144,7 @@ class RocksDB:
 
         return await future
 
-    async def put(self, options: WriteOptions, key: str, value: str) -> Response:
+    async def put(self, options: WriteOptions, key: str, value: str | bytes) -> Response:
         """Set the database entry for `key` to `value`
 
         Args:
@@ -166,8 +167,8 @@ class RocksDB:
 
         if not isinstance(key, str):
             raise TypeError("key must be str")
-        elif not isinstance(value, str):
-            raise TypeError("value must be str")
+        elif not isinstance(value, (str, bytes)):
+            raise TypeError("value must be str | bytes")
         elif not isinstance(options, WriteOptions):
             raise TypeError(f"Invalid class '{type(options).__name__}'")
 
@@ -276,7 +277,8 @@ class RocksDB:
             `Response`
         """
 
-        future = self.loop.run_in_executor(self.executer, self.__rocksdb.GetOptions)
+        future = self.loop.run_in_executor(
+            self.executer, self.__rocksdb.GetOptions)
 
         return await future
 
@@ -369,7 +371,8 @@ class RocksDB:
         if not isinstance(options, FlushOptions):
             raise TypeError(f"Invalid class '{type(options).__name__}'")
 
-        future = self.loop.run_in_executor(self.executer, self.__rocksdb.Flush, options)
+        future = self.loop.run_in_executor(
+            self.executer, self.__rocksdb.Flush, options)
 
         return await future
 
