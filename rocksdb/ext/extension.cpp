@@ -28,7 +28,8 @@ PYBIND11_MODULE(rocksdb_ext, m) {
         .def(py::init<rocksdb::Status &, std::string *>())
         .def_readwrite("status", &Response::status)
         .def_readwrite("options", &Response::options)
-        .def_readwrite("value", &Response::value);
+        .def_readwrite("value", &Response::value)
+        .def("value_bytes", &Response::value_bytes);
 
     // RocksDB options aka rocksdb::Options
     py::class_<rocksdb::Options>(m, "_Options")
